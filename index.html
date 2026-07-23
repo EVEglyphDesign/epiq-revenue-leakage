@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Epiq Revenue-Leakage — Team Onboarding</title>
+<style>
+  :root{
+    --cream:#fdfaf4; --ink:#1a1a1a; --line:#e7e1d3;
+    --teal:#0f6b6b; --orange:#d2731a; --muted:#6b6459;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--cream);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:48px 24px 80px}
+  header{border-bottom:2px solid var(--line);padding-bottom:28px;margin-bottom:8px}
+  .eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);font-weight:700}
+  h1{font-size:34px;line-height:1.15;margin:10px 0 6px;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:17px;max-width:640px}
+  .accent{height:3px;width:64px;background:var(--orange);margin:18px 0 0;border-radius:2px}
+  h2{font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);
+    margin:44px 0 18px;font-weight:700}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 26px;margin-bottom:16px}
+  .step{display:flex;gap:18px;align-items:flex-start}
+  .num{flex:0 0 38px;height:38px;width:38px;border-radius:50%;background:var(--teal);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:17px}
+  .step h3{font-size:19px;margin-bottom:6px}
+  .step p{color:var(--muted);font-size:15.5px;margin-bottom:8px}
+  code{background:#f3eee2;border:1px solid var(--line);border-radius:6px;padding:2px 7px;
+    font-family:"SF Mono",Menlo,Consolas,monospace;font-size:13.5px;color:var(--ink)}
+  pre{background:#1a1a1a;color:#f3eee2;border-radius:10px;padding:16px 18px;overflow:auto;
+    font-family:"SF Mono",Menlo,Consolas,monospace;font-size:13.5px;margin:10px 0;line-height:1.5}
+  a{color:var(--teal);font-weight:600}
+  .pick{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:4px}
+  .pick .card{margin:0}
+  .pick h3{font-size:17px;color:var(--teal);margin-bottom:4px}
+  .pick p{font-size:14px;color:var(--muted)}
+  .who{display:inline-block;background:#f3eee2;border:1px solid var(--line);border-radius:20px;
+    padding:3px 12px;font-size:13px;color:var(--muted);margin-top:14px}
+  .btn{display:inline-block;background:var(--teal);color:#fff;text-decoration:none;
+    padding:11px 20px;border-radius:10px;font-weight:700;margin-top:6px}
+  footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--line);
+    color:var(--muted);font-size:13.5px}
+  .fr{color:var(--orange);font-style:italic}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">EVE Glyph Design · Epiq Revenue-Leakage</div>
+    <h1>Get hooked into the model.</h1>
+    <p class="sub">One repository. Your surface of choice. This page walks you through
+      connecting, so you can spin the revenue-leakage model alongside the rest of us —
+      and start growing your own digital twin.</p>
+    <div class="accent"></div>
+    <span class="who">For Matt &amp; Seshu — Tobias, you already know the drill.</span>
+  </header>
+
+  <h2>What this is</h2>
+  <div class="card" style="border-color:var(--teal);border-width:2px">
+    <p>This is a <strong>fork off of EVE</strong> — the EVE-side baseline. We're using it
+    to <strong>clear up the requirements and stand up our initial demo</strong>. That's
+    all it is.</p>
+    <p style="margin-top:10px">A few things to be clear on:</p>
+    <ul style="color:var(--muted);font-size:15.5px;margin:8px 0 0 20px">
+      <li><strong>All Epiq data stays inside the Epiq environment.</strong> The demo
+      data lives in <strong>Postgres, inside Epiq infrastructure</strong> — none of
+      Epiq's data is ever handled outside it.</li>
+      <li><strong>No proprietary Epiq information belongs in this repo.</strong> The
+      client-confidential side is set up and governed by Tobias, walled off; we
+      contribute to that through him.</li>
+      <li>Once the demo is approved, it becomes a repository build on Epiq
+      infrastructure. The EVE fork can be copied back into the Epiq environment and we
+      continue there.</li>
+      <li>We're <strong>not here to own the capital asset — that's Epiq's.</strong></li>
+    </ul>
+  </div>
+
+  <h2>What you're joining</h2>
+  <div class="card">
+    <p>The revenue-leakage model lives in one public GitHub repository. Everyone works
+    off the <strong>same source of truth</strong>. You bring your own surface — the AI
+    tool you like best — point it at the repo, and your work flows back in. Read the
+    model itself in
+    <a href="./MODEL-CANON.md">MODEL-CANON.md</a>.</p>
+  </div>
+
+  <h2>Step by step</h2>
+
+  <div class="card"><div class="step">
+    <div class="num">1</div>
+    <div>
+      <h3>Get a free GitHub account</h3>
+      <p>If you don't have one yet, sign up. Takes two minutes.</p>
+      <a class="btn" href="https://github.com/signup" target="_blank" rel="noopener">Create GitHub account</a>
+    </div>
+  </div></div>
+
+  <div class="card"><div class="step">
+    <div class="num">2</div>
+    <div>
+      <h3>Tell the team your GitHub username</h3>
+      <p>Send your username to the WhatsApp group so you can be added as a
+      collaborator. Once you're added, you can push your own work back into the repo.</p>
+    </div>
+  </div></div>
+
+  <div class="card"><div class="step">
+    <div class="num">3</div>
+    <div>
+      <h3>Get the repository onto your machine</h3>
+      <p>Open a terminal and run:</p>
+      <pre>git clone https://github.com/EVEglyphDesign/epiq-revenue-leakage.git
+cd epiq-revenue-leakage</pre>
+      <p>No terminal? You can also open the repo in the browser and use GitHub's
+      built-in editor — press <code>.</code> (the period key) on the repo page.</p>
+    </div>
+  </div></div>
+
+  <div class="card"><div class="step">
+    <div class="num">4</div>
+    <div>
+      <h3>Pick your surface</h3>
+      <p>Point whichever tool you prefer at the repo folder. Any of these work — pick one:</p>
+      <div class="pick">
+        <div class="card"><h3>Cursor</h3><p>Open the folder in Cursor and ask it about <code>MODEL-CANON.md</code>.</p></div>
+        <div class="card"><h3>VS Code + Copilot</h3><p>Open the folder, let Copilot read the repo as context.</p></div>
+        <div class="card"><h3>Claude / ChatGPT</h3><p>Paste in <code>MODEL-CANON.md</code> and work from there.</p></div>
+        <div class="card"><h3>GitHub web editor</h3><p>Edit right in the browser — no install needed.</p></div>
+      </div>
+    </div>
+  </div></div>
+
+  <div class="card"><div class="step">
+    <div class="num">5</div>
+    <div>
+      <h3>Spin the model, then push it back</h3>
+      <p>Make your changes, then send them back so the whole team — and this page —
+      stays current:</p>
+      <pre>git add .
+git commit -m "your note here"
+git push</pre>
+      <p>Using the browser editor? Just hit <strong>Commit changes</strong>. That's it.</p>
+    </div>
+  </div></div>
+
+  <div class="card" style="border-color:var(--orange);border-width:2px"><div class="step">
+    <div class="num" style="background:var(--orange)">M</div>
+    <div>
+      <h3>Matt — bring the billing operation in</h3>
+      <p>We want to twin the whole operation Jackie runs, as fast as possible. When you
+      connect, add everything you have on the <strong>draft billing (Fury) app</strong> —
+      especially <strong>where the table structures live and what they look like</strong>.
+      Drop it into a <code>billing-twin/</code> folder in the repo.</p>
+      <p>Include, as best you can:</p>
+      <ul style="color:var(--muted);font-size:15.5px;margin:0 0 8px 20px">
+        <li>Fury app data model — table names, keys, relationships</li>
+        <li>Any schema exports, DDL, or screenshots of the table structures</li>
+        <li>The SAP data the billing operation depends on</li>
+      </ul>
+      <p>The goal: take <strong>all the SAP data requirements and pipeline them through
+      DataSphere at once</strong>, so the billing operation twins alongside the leakage
+      model instead of in a second pass.</p>
+    </div>
+  </div></div>
+
+  <div class="card"><div class="step">
+    <div class="num">6</div>
+    <div>
+      <h3>Grow your own digital twin</h3>
+      <p>Once you're pushing work, you're building your own surface on top of the shared
+      model — the same way the rest of us do. Add your own folder, keep the model canon
+      intact, and keep pace as we go.</p>
+    </div>
+  </div></div>
+
+  <footer>
+    <strong>EVE Glyph Design</strong> — anchored to Tobias Polly, polly consulting e.U. (17 July 2026)<br>
+    Consolidated revenue-leakage model · propose-only · public spin surface<br>
+    <span class="fr">Pour le bien-être du peuple.</span>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -9,6 +9,12 @@
 > pulled together from the working threads. It is the base the team spins from.
 > No SCS / Steel Cloud on any cover. No third-party file codes in the body.
 > Attribution below EVE Glyph Design stays inside EGD copy.
+>
+> **Foundation:** the Tobias-derived corrections doc is the anchor for this model.
+> Read [DOCUMENT-A-corrections.md](./DOCUMENT-A-corrections.md) (original PDF in
+> [`foundation/`](./foundation/)) before spinning — it holds the
+> "Tobias brief → internal Epiq telling" anchor table and the Analysis-for-Office
+> proof point.
 
 ---
 
@@ -94,5 +100,9 @@ Green-light **P0 + P1**: leakage-lens configuration and the first narrated repor
 against a closed prior period.
 
 ---
+
+© 2026 Dany Theriault. EVE "digital stem cell" glyph and glyph-based design
+principles — all rights reserved. Stewardship of rights of use and assignment for
+large public and institutional usage rests with the Pacific Utilities Design Council.
 
 *Pour le bien-être du peuple.*

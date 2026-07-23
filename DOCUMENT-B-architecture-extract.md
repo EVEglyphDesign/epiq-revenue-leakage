@@ -119,10 +119,124 @@ Two properties make this safe to put in front of sensitive data:
   boundary, and Langfuse records each step end-to-end. When someone asks "how do I
   know the AI didn't make this up?", the honest answer is: replay it and see.
 
+### 3.1 Built to pass a security review
+
+The security question is finite by design. When the platform reaches into a customer's
+system, the registration lives in the **customer's own tenant** — the operator holds only
+the operating secret and the discipline to rotate it, and the customer keeps the power to
+revoke access at any time. Data handled during a run is destroyed on a fixed schedule,
+the network defaults to deny, and every answer is logged for replay. Nothing here
+requires trusting a black box: access is scoped, revocable, and observable end-to-end.
+
+## 4 · What is already built, and what it taught us
+
+None of this is a whiteboard proposal. The pieces below are running, and each carries a
+lesson paid for once so Epiq does not have to. Epiq inherits the hardened version, not
+the first draft.
+
+| What was built | What it taught us |
+|----------------|-------------------|
+| A bounded agent (plan → retrieve → narrate), tested on real data | Bounded beats clever: predictable cost, answers in seconds, and an auditable plan — clears a compliance review where an open-ended agent would not. |
+| A source adapter in front of the data | Swapping the data source is a configuration change, not a rebuild. This is the whole basis of the retargeting claim. |
+| A business-language layer over the tools | Users ask in their own words; changing a tool never means rewriting the prompts. |
+| Full replay of every answer (Langfuse) | The honest answer to "did the AI invent this?" is to replay it step by step — what earns trust with auditors and risk teams. |
+| A human-approval gate on a finance automation | "The AI proposes and a person disposes" is what makes automation acceptable in regulated work. |
+| One engine reused across several engagements | Roughly three-quarters of each new build is reuse; only the source, the measures, and the delivery cards change. |
+
+*Table 2: The stack is a set of paid-for lessons, not a set of promises.*
+
+One lesson stated candidly: the first build kept the agent's session memory in-process,
+which caps it to a single instance. The production path swaps in a shared store so it
+scales to many users at once — a small, known change made up front rather than
+discovered late.
+
+## 5 · Where the data lives: query live, compute ephemerally
+
+The platform does not keep a standing copy of the customer's data. It queries the live
+system on demand, pulls back only what a question needs, and builds the analysis in an
+ephemeral working layer that exists for the session and then disappears. There is no
+second database of sensitive records to secure, reconcile, or destroy — because there is
+no second database.
+
+### 5.1 Retrieve from the live system
+
+The agent sees a uniform "edit history" interface; behind it, the adapter queries
+whichever live system the engagement runs on. SAP is one supported source, not a
+requirement.
+
+| Live source | Typical use | Status |
+|-------------|-------------|--------|
+| SAP S/4 & DataSphere | Finance and order edit history | Live today |
+| Custom / in-house systems | Epiq's own matter and billing systems | Ready to point |
+| Staffing & HR platforms | Bullhorn, Workday record changes | Planned |
+| Data lake / warehouse | Consolidated cross-system history | Planned |
+
+*Table 3: The adapter queries the live system. SAP is one card among several.*
+
+### 5.2 Compute in an ephemeral layer — DuckDB and graph
+
+Once data is retrieved, analysis happens in a working layer spun up for the question and
+torn down after. Two engines cover the two kinds of question:
+
+| Working engine | Best at | Lifespan |
+|----------------|---------|----------|
+| DuckDB (tabular analytics) | Ranking, counting, trend and leakage summaries over large volumes; joining across sources; fast slicing for follow-ups | Per session |
+| Ephemeral graph | "How is this connected to that?" — tracing how edits, people, and matters relate across many hops | Per session |
+| Persistent store (optional) | A standing, pre-computed view when a customer specifically wants one retained | Retained |
+
+*Table 4: Analysis is built in an ephemeral layer and discarded; a persistent store is
+the exception, not the rule.*
+
+DuckDB is the general-purpose workhorse: large volumes, local and fast, as useful for
+matter/billing and cross-system reporting as for finance. The ephemeral graph is added
+only when the value is in relationships rather than totals. Neither leaves anything behind.
+
+## 6 · The models, and what it takes to point at Epiq
+
+Reasoning runs on models hosted in **Azure AI Foundry**, inside the same network
+boundary as the rest of the stack — prompts and data never leave the customer's Azure
+tenant. The model is a configuration value, not a hard-wired dependency; it can be
+swapped as newer models arrive, or replaced with a self-hosted model where required.
+
+| Option | Notes | Residency |
+|--------|-------|-----------|
+| Foundry — GPT-5.6 Sol | Current default; strongest structured reasoning | In-tenant |
+| Foundry — Kimi K3 | Alternate hosted model, same interface | In-tenant |
+| Self-hosted (open model) | For a fully on-premises requirement | On-premises |
+
+*Table 5: Models are swappable behind one interface. Nothing leaves the customer's
+boundary.*
+
+### 6.1 Pointing the engine at Epiq
+
+Because source, storage, and model are all configuration, standing this up for Epiq is a
+short, low-risk sequence rather than a fresh build:
+
+1. Point the source adapter at the chosen Epiq system's live edit history.
+2. Stand up the ephemeral DuckDB layer; add the graph only if relationship questions
+   demand it.
+3. Confirm the model deployment and the network boundary in Epiq's tenant.
+4. Validate the Revenue Leakage answers against a known period, then open it in Teams.
+
+**The position.** The engine, the audit trail, the Teams experience, and the security
+posture are already built and running. Epiq does not fund another platform — it funds a
+retargeting. The fastest way to move the P&L is to reuse what already works.
+
 ---
 
-> Note: any further sections beyond §3 continue in the full extract. Add them here as
-> they are brought in, so this file mirrors Tobias's complete architecture doc.
+## Cue for Tobias — revenue-specific detail still owed
+
+This architecture extract is the **pattern-analysis backbone** (source → reasoning →
+Teams → observability), lifted and de-branded for the PMO surface. What it does **not**
+yet contain is the **revenue-specific model detail** — the leakage measures, field-level
+logic, and the finding schema that turn this general engine into the Revenue Leakage
+Model. **Tobias to supply in the morning:**
+
+- The exact leakage measures / field rules (which post-booking edits count, thresholds).
+- The finding schema the Synthesizer emits for revenue answers.
+- The known-period validation set used to prove the Revenue Leakage answers (§6.1 step 4).
+
+Until Tobias provides that, the revenue layer stays cued here rather than invented.
 
 © 2026 Dany Theriault. EVE "digital stem cell" glyph and glyph-based design
 principles — all rights reserved. Stewardship of rights of use and assignment for

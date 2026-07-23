@@ -10,11 +10,14 @@
 > No SCS / Steel Cloud on any cover. No third-party file codes in the body.
 > Attribution below EVE Glyph Design stays inside EGD copy.
 >
-> **Foundation:** the Tobias-derived corrections doc is the anchor for this model.
-> Read [DOCUMENT-A-corrections.md](./DOCUMENT-A-corrections.md) (original PDF in
-> [`foundation/`](./foundation/)) before spinning — it holds the
-> "Tobias brief → internal Epiq telling" anchor table and the Analysis-for-Office
-> proof point.
+> **Foundation:** the Tobias-derived docs are the anchor for this model. Read them
+> before spinning:
+> - [DOCUMENT-A-corrections.md](./DOCUMENT-A-corrections.md) — standing-narrative
+>   corrections + the "Tobias brief → internal Epiq telling" anchor table + the
+>   Analysis-for-Office proof point (original PDF in [`foundation/`](./foundation/)).
+> - [DOCUMENT-B-architecture-extract.md](./DOCUMENT-B-architecture-extract.md) —
+>   RFQ 125 mandate, the four-part engine, reuse-vs-configured table, and the
+>   Router → Executor → Synthesizer reasoning path with a worked example.
 
 ---
 

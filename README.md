@@ -26,8 +26,12 @@ and onboarding.
 
 ## What's here
 
-- **[DOCUMENT-A-corrections.md](./DOCUMENT-A-corrections.md)** — the Tobias-derived
-  foundation (anchor doc). Original PDF preserved in [`foundation/`](./foundation/).
+- **[DOCUMENT-A-corrections.md](./DOCUMENT-A-corrections.md)** — Tobias-derived
+  foundation: the standing-narrative corrections + anchor table. Original PDF in
+  [`foundation/`](./foundation/).
+- **[DOCUMENT-B-architecture-extract.md](./DOCUMENT-B-architecture-extract.md)** —
+  Tobias-derived architecture backbone: RFQ 125 mandate, the four-part engine, the
+  reuse-vs-configured table, and the Router → Executor → Synthesizer reasoning path.
 - **[MODEL-CANON.md](./MODEL-CANON.md)** — the single consolidated record of the
   revenue-leakage model. The base everyone spins from.
 - **[index.html](./index.html)** — the onboarding surface. Step-by-step guide to get
